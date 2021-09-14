@@ -17,7 +17,7 @@ namespace UnitTests.Models
         [Fact]
         public void Account_CreateAccountNonZeroBalance_ShouldCreateInstance()
         {
-            var account = new Account("jakub", 150, 0);
+            var account = new Account("jakub", 0, 150);
 
             Assert.Equal("jakub", account.Owner);
             Assert.Equal(150, account.Balance);
