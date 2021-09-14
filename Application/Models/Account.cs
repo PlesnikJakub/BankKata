@@ -3,10 +3,10 @@
     public class Account : IAccount
     {
         public string Owner { get; private set; }
-        public double Balance { get; private set; }
+        public IMoney Balance { get; private set; }
         public double InterestRate { get; private set; }
 
-        public Account(string owner, double interestRate, double initialBalance)
+        public Account(string owner, double interestRate, IMoney initialBalance)
         {
             if (string.IsNullOrEmpty(owner))
             {
@@ -18,7 +18,7 @@
                 throw new ArgumentOutOfRangeException("Interest rate cannot be nagative");
             }
 
-            if (initialBalance < 0)
+            if (initialBalance.amount < 0)
             {
                 throw new ArgumentOutOfRangeException("Initial balance cannot be negative");
             }
@@ -29,35 +29,35 @@
             InterestRate = interestRate;
         }
 
-        public double AddInterest()
+        public void AddInterest()
         {
             throw new NotImplementedException();
         }
 
-        public void Deposit(double amount)
+        public void Deposit(IMoney money)
         {
-            if (amount < 0)
+            if (money.amount < 0)
             {
                 throw new ArgumentOutOfRangeException("Amount for deposit cannot be negative");
             }
 
-            Balance += amount;
+            Balance.amount += money.amount;
 
         }
 
-        public void Withdraw(double amount)
+        public void Withdraw(IMoney money)
         {
-            if (amount < 0)
+            if (money.amount < 0)
             {
                 throw new ArgumentOutOfRangeException("Amount for withdraw cannot be negative");
             }
 
-            if ((Balance - amount) < 0)
+            if ((Balance.amount - money.amount) < 0)
             {
                 throw new InvalidOperationException("Unable to withdraw. Not enough resources.");
             }
 
-            Balance -= amount;
+            Balance.amount -= money.amount;
         }
     }
 }
