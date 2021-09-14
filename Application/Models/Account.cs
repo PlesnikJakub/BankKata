@@ -4,7 +4,7 @@
     {
         public string Owner { get; private set; }
         public double Balance { get; private set; }
-        private double InterestRate { get; set; }
+        public double InterestRate { get; private set; }
 
         public Account(string owner, double interestRate, double initialBalance)
         {

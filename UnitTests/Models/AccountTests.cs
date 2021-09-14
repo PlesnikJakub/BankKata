@@ -17,10 +17,11 @@ namespace UnitTests.Models
         [Fact]
         public void Account_CreateAccountNonZeroBalance_ShouldCreateInstance()
         {
-            var account = new Account("jakub", 0, 150);
+            var account = new Account("jakub", 1.1, 150.1);
 
             Assert.Equal("jakub", account.Owner);
-            Assert.Equal(150, account.Balance);
+            Assert.Equal(150.1, account.Balance);
+            Assert.Equal(1.1, account.InterestRate);
         }
 
         [Fact]
